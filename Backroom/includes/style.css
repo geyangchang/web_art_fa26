@@ -1,0 +1,124 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+#cat {
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    z-index:1;
+    width: 75px;
+    height:auto;
+}
+
+.rooms {
+    position: relative;
+    width: 100vw;
+}
+
+#room-1 {
+    height: 100vh;
+    background-image: url("../images/room1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#room-2 {
+    height: 100vh;
+    background-image: url("../images/room2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#room-3 {
+    height: 100vh;
+    background-image: url("../images/room3.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.wall {
+    position:relative;
+    height: 10px;
+    width: 100%;
+    background-color:antiquewhite
+}
+
+.room-item {
+    position: absolute;
+}
+
+#music-note {
+    top: 60%;
+    left: 10%;
+    width: 200px;
+    height: auto;
+}
+
+#furniture-group {
+    position: absolute;
+    top: 15%;
+    left: 15%;
+}
+
+#sofa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: auto;
+}
+
+#fan {
+    position: absolute;
+    top: -40px;
+    left: 220px;
+    width: 100px;
+    height: auto;
+}
+
+#clipboard {
+    top: 25%;
+    left: 20%;
+    width: 120px;
+    height: auto;
+}
+
+#clipboard:hover {
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+}
+
+#resting-cat {
+    top: 70%;
+    left: 70%;
+    width: 150px;
+    height: auto;
+}
+
+#bubble {
+    top: 20%;
+    left: 70%;
+    width: 150px;
+    height: auto;
+    opacity: 0.5;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#bubble:hover {
+    transform: scale(1.1);
+    opacity: 0.7;
+}
+
+.front-door {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 100%;
+    background-color: #4a2c1d;
+}
