@@ -6,7 +6,7 @@ html, body {
 
 body {
     /* overflow: hidden; */
-    background-color: white;
+    background-color: #e8e9e2;
     font-family: "DM Serif Display", serif;
 }
 
@@ -22,10 +22,10 @@ body {
 
 .word {
     display: inline-block;
-    color: #7d7d7d;
-    opacity: 0.3;
-    filter: blur(6px);
-    transition: opacity 2s ease, filter 2s ease;
+    color: #feffff;
+    opacity: 0.8;
+    filter: blur(5px);
+    transition: opacity 1s ease, filter 1s ease;
 }
 
 .word:hover {
@@ -35,17 +35,95 @@ body {
 }
 
 .small {
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .medium {
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .big {
-    font-size: 42px;
+    font-size: 32px;
 }
 
 .huge {
-    font-size: 60px;
+    font-size: 50px;
+}
+
+.space-1 {
+    margin-left: 30px;
+}
+
+.space-2 {
+    margin-left: 60px;
+}
+
+.space-3 {
+    margin-left: 90px;
+}
+
+.space-6 {
+    margin-left: 180px;
+}
+
+.space-7 {
+    margin-left: 210px;
+}
+
+.space-11 {
+    margin-left: 330px;
+}
+
+.space-12 {
+    margin-left: 360px;
+}
+
+.space-13 {
+    margin-left: 390px;
+}
+
+.space-14 {
+    margin-left: 420px;
+}
+
+.space-17 {
+    margin-left: 510px;
+}
+
+.ripple {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border: 2px solid #ebf8f7;
+    border-radius: 50%;
+    opacity: 0;
+    animation: ripple 6s ease-out infinite;
+}
+
+#ripple-1 {
+    top: 15%;
+    right: 40%;
+}
+
+#ripple-2 {
+    top: 45%;
+    left: 30%;
+    animation-delay: 2s;
+}
+
+#ripple-3 {
+    top: 70%;
+    left: 70%;
+    animation-delay: 4s;
+}
+
+@keyframes ripple {
+    from {
+        transform: scale(0.3);
+        opacity: 1;
+    }
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
 }
