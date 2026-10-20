@@ -1,0 +1,103 @@
+
+html, body {
+    width:100%;
+    margin:0;
+    overflow-x:hidden;
+}
+
+#walking-person {
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index:1;
+    width:75px;
+    height:auto;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.rooms {
+    position:relative;
+    width:100vw;
+}
+
+#room-1 {
+    height:100vh;
+    background-image: url("../images/kitchen-tile.jpg");
+    background-size: 2% auto;
+    background-repeat: repeat;
+}
+
+.wall {
+    position:relative;
+    height:10px;
+    width:100%;
+    background-color: #999;
+}
+
+.front-door {
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    height:100%;
+    width:250px;
+    background-color:#000;
+}
+
+#room-2 {
+    height:200vh;
+    background-image: url("../images/floor.jpg");
+    background-size: 20% auto;
+    background-repeat: repeat;
+}
+
+#room-3 {
+    height:100vh;
+    background-image: url("../images/kitchen-tile_purple.jpg");
+    background-size: 2% auto;
+    background-repeat: repeat;
+}
+
+#mop {
+    position:absolute;
+    bottom:10px;
+    left:10px;
+    width:300px;
+    height:auto;
+}
+
+
+.table {
+    position: absolute;
+    width:20%;
+    height:auto;
+    margin:10rem;
+    transition: all 0.5s ease;
+}
+
+.RightTop {
+    right:0;
+}
+
+.RightBottom {
+    right:0;
+    bottom:0;
+}
+
+.RightMiddleOne {
+    right:0;
+    top:25%;
+    transform: translateY(-50%);
+}
+
+.RightMiddleTwo {
+    right:0;
+    top:55%;
+    transform: translateY(-50%);
+}
+
+.LeftBottom {
+    left:0;
+    bottom:0;
+}

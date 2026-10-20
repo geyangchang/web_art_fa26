@@ -1,0 +1,51 @@
+<!-- tells the browser this is a modern HTML5 page -->
+<!DOCTYPE html>
+
+  <!-- the head holds information ABOUT the page; nothing in here shows up on screen -->
+  <head>
+
+        <!-- the text shown on the browser tab -->
+        <title>Dada Data</title>
+
+        <!-- page info for search engines: a short summary, keywords, and who made it -->
+        <meta name="description" content="Ivy's Dada Data page.">
+        <meta name="keywords" content="HTML, CSS">
+        <meta name="author" content="Ivy Chang">
+
+        <!-- connects the stylesheet; href is the path from this file to the CSS file -->
+        <link rel="stylesheet" href="includes/style.css">
+
+    </head>
+
+<!-- the body holds everything that shows up on screen -->
+<body>
+
+
+    <!-- test 1: random pop-up windows -->
+    <!-- clicking this opens a window; the id lets JavaScript find it (#spawn-button) -->
+    <button id="spawn-button">open a window</button>
+
+    <!-- an empty container; JavaScript adds every pop-up window inside it -->
+    <div id="window-layer"></div>
+
+    <!-- closes every window to reveal the to-do list -->
+    <button id="clear-button">clear</button>
+
+    <!-- test 2: to-do list that never finishes -->
+    <!-- a container that groups the heading and the list together -->
+    <div id="todo">
+        <!-- the to-do list's heading -->
+        <h2>To do</h2>
+        <!-- ul = unordered (bulleted) list; JavaScript adds new tasks to the top of it -->
+        <ul id="todo-list">
+            <!-- li = list item; this is the original task that never gets finished -->
+            <!-- the class lets CSS style it differently (bold) -->
+            <li class="original-task">Finish Project #2 proposal</li>
+        </ul>
+    </div>
+
+    <!-- loads the JavaScript; it goes at the END of the body so all the elements
+         above already exist when the script looks for them -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+/* 1. Use a more intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margins so you control layout intentionally */
+* {
+	margin: 0;
+}
+
+/* 3. Allow percentage-based heights and smooth typography on the body */
+body {
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	min-block-size: 100svh;
+	/* Uses Small Viewport Height to prevent mobile layout shifts */
+}
+
+/* 4. Improve media defaults and prevent overflow */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 5. Inherit fonts for form controls instead of browser defaults */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 6. Avoid awkward text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 7. Modern text-wrapping (prevents orphan words) */
+p {
+	text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/* 8. Enable native transitions between '0' and 'auto' (Chrome/Edge/Modern WebKit) */
+@media (prefers-reduced-motion: no-preference) {
+	:root {
+		interpolate-size: allow-keywords;
+	}
+}

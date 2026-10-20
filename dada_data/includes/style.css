@@ -1,0 +1,58 @@
+/* the whole page */
+body {
+    margin: 0;                  /* removes the browser's default space around the page */
+    padding: 20px;              /* adds your own space inside the page edges */
+    font-family: sans-serif;    /* uses the computer's default sans-serif font */
+    background: white;          /* sets the page color so it doesn't follow dark mode */
+}
+
+/* ---------- test 1: pop-up windows ---------- */
+
+/* the invisible layer that holds all the windows */
+#window-layer {
+    position: fixed;            /* pinned to the browser window; doesn't scroll */
+    inset: 0;                   /* shorthand for top/right/bottom/left: 0 — covers the whole screen */
+}
+
+/* each pop-up window */
+.popup {
+    position: absolute;         /* lets JavaScript place it with left and top */
+    width: 260px;               /* fixed size */
+    height: 160px;              /* empty windows need a height, or they'd be flat */
+    background: white;
+    border: 1px solid #999;     /* thin gray outline: thickness, style, color */
+    border-radius: 8px;         /* rounded corners */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);  /* soft shadow: x offset, y offset, blur, color at 20% opacity */
+}
+
+/* stays where it is, but on top of the windows */
+#spawn-button {
+    position: relative;         /* keeps it in its normal spot; needed for z-index to work */
+    z-index: 10;                /* stacking order: higher sits on top, so windows never cover it */
+}
+
+/* stays in the corner, on top of the windows */
+#clear-button {
+    position: fixed;            /* pinned to the browser window */
+    right: 20px;                /* 20px from the right edge */
+    bottom: 20px;               /* 20px from the bottom edge */
+    z-index: 10;                /* stacking order: higher sits on top, so windows never cover it */
+}
+
+/* ---------- test 2: to-do list ---------- */
+
+/* the box around the heading and list */
+#todo {
+    width: 280px;
+    margin-top: 30px;           /* space between the list and the content above it */
+}
+
+/* every list item, including new ones JavaScript adds later */
+#todo-list li {
+    padding: 4px 0;             /* 4px above and below each task, 0 on the sides */
+}
+
+/* the original task, bold so you can track it as it sinks */
+.original-task {
+    font-weight: bold;
+}
