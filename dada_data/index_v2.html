@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <!-- needed so symbols like × display correctly -->
+        <meta charset="UTF-8">
+
+        <title>Dada Data</title>
+
+        <meta name="description" content="Ivy's Dada Data page.">
+        <meta name="keywords" content="HTML, CSS">
+        <meta name="author" content="Ivy Chang">
+
+        <link rel="stylesheet" href="includes/style_v2.css">
+
+    </head>
+
+<body>
+
+    <!-- the to-do list, on a yellow sticky note -->
+    <div id="sticky-note">
+        <ul id="todo-list">
+            <!-- the main task; new tasks push in above it -->
+            <li class="main-task">Finish Project #2 proposal</li>
+        </ul>
+    </div>
+
+    <!-- the initial task: the one thing the user is trying to focus on -->
+    <div id="task-window">
+        <div class="title-bar">Google Doc</div>
+        <!-- textarea = a box you can type in; placeholder is the gray text shown before typing -->
+        <textarea id="typing-area" placeholder="start writing my idea..."></textarea>
+    </div>
+
+    <!-- an empty container; JavaScript adds every pop-up window inside it -->
+    <div id="window-layer"></div>
+
+    <script src="includes/script_v2.js"></script>
+</body>
+</html>
