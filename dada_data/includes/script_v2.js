@@ -1,15 +1,29 @@
 // ---------- where interruptions come from ----------
 
-// each pop-up shows one of these in its title bar, in this order
+// each pop-up shows one of these, in this order
+// name = the title bar text, image = the picture inside the pop-up
+// type = "internal" (I distracted myself) or "external" (something else pulled me away)
 let apps = [
-    "Arc",
-    "Instagram",
-    "Slack",
-    "RedNote",
-    "Canvas",
-    "Spotify",
-    "Google Calendar",
-    "iMessage"
+    { name: "Arc", image: "images/arc.png", type: "internal" },
+    { name: "Instagram", image: "images/instagram.png", type: "internal" },
+    { name: "Slack", image: "images/slack.png", type: "external" },
+    { name: "RedNote", image: "images/rednote-2.webp", type: "internal" },
+    { name: "Instagram", image: "images/instagram-2.png", type: "internal" },
+    { name: "RedNote", image: "images/rednote.png", type: "internal" },
+    { name: "Canvas", image: "images/canvas.png", type: "internal" },
+    { name: "iMessage", image: "images/imessage-2.png", type: "external" },
+    { name: "Instagram", image: "images/instagram-3.png", type: "internal" },
+    { name: "Spotify", image: "images/spotify.png", type: "internal" },
+    { name: "RedNote", image: "images/rednote-3.webp", type: "internal" },
+    { name: "Arc", image: "images/arc-2.png", type: "internal" },
+    { name: "Google Calendar", image: "images/google-calendar.png", type: "external" },
+    { name: "Slack", image: "images/slack-2.webp", type: "external" },
+    { name: "Instagram", image: "images/instagram-4.png", type: "internal" },
+    { name: "iMessage", image: "images/imessage.png", type: "external" },
+    { name: "Canvas", image: "images/canvas-2.png", type: "internal" },
+    { name: "RedNote", image: "images/rednote-4.webp", type: "internal" },
+    { name: "Spotify", image: "images/spotify-2.png", type: "internal" },
+    { name: "Instagram", image: "images/instagram-5.png", type: "internal" }
 ];
 
 // which app comes next (0 = the first one in the list)
@@ -51,11 +65,12 @@ function openWindow() {
     // make a new div for the pop-up
     let popup = document.createElement("div");
     popup.classList.add("popup");
+    popup.classList.add(app.type);   // "internal" or "external" sets the title bar color
 
     // title bar with the app the interruption is from
     let titleBar = document.createElement("div");
     titleBar.classList.add("title-bar");
-    titleBar.textContent = app;
+    titleBar.textContent = app.name;
     popup.appendChild(titleBar);
 
     // the × in the top right corner closes this pop-up
@@ -63,13 +78,20 @@ function openWindow() {
     closeButton.classList.add("close-button");
     closeButton.textContent = "×";
     closeButton.onclick = function () {
-        popup.remove();
-        console.log("closed:", app);
+        // instead of removing the pop-up, turn it into a faint "ghost" left behind
+        popup.classList.add("ghost");
+        closeButton.remove();
     };
     popup.appendChild(closeButton);
 
+    // the app's picture
+    let image = document.createElement("img");
+    image.classList.add("popup-image");
+    image.src = app.image;      // src = which image file to show
+    image.alt = app.name;       // alt = text shown if the image can't load
+    popup.appendChild(image);
+
     // put it in a random spot on the screen
-    // subtracting the pop-up's size (380 x 250 in the CSS) keeps it fully on screen
     popup.style.left = Math.random() * (window.innerWidth - 380) + "px";
     popup.style.top = Math.random() * (window.innerHeight - 250) + "px";
 
@@ -82,11 +104,11 @@ function openWindow() {
         appNumber = 0;
     }
 
-    // every 5th pop-up adds a task
+    // every 3rd pop-up adds a task
     windowCount = windowCount + 1;
-    if (windowCount == 5) {
+    if (windowCount == 3) {
         addTask();
-        windowCount = 0;   // start counting again
+        windowCount = 0;   
     }
 }
 
@@ -113,13 +135,12 @@ function addTask() {
 // ---------- pop-ups open by themselves ----------
 
 // seconds to wait before each pop-up, in order — from my data set
-let gaps = [5, 1.3, 4.4, 1.3, 1.3, 1, 4.4];
+let gaps = [6, 1.56, 5.28, 1.56, 1.56, 1.2, 5.28];
 
 // which gap comes next
 let gapNumber = 0;
 
-function waitThenOpen() {
-    // setTimeout runs the code inside ONCE, after a wait in milliseconds
+function waitToOpen() {
     // (seconds x 1000 = milliseconds)
     setTimeout(function () {
         openWindow();
@@ -129,11 +150,10 @@ function waitThenOpen() {
         if (gapNumber == gaps.length) {
             gapNumber = 0;
         }
-
-        // start waiting for the next pop-up
-        waitThenOpen();
-    }, gaps[gapNumber] * 1000);
+        waitToOpen();
+    }, 
+    gaps[gapNumber] * 1000);
 }
 
 // start the first wait
-waitThenOpen();
+waitToOpen();

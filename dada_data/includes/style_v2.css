@@ -1,17 +1,26 @@
+/* the browser window itself: never scrolls */
+html {
+    overflow: hidden;
+}
+
 /* the whole page */
 body {
     margin: 0;
     font-family: sans-serif;
     background: linear-gradient(#dff0ff, #a9d4f5);  /* light blue gradient, lighter at the top */
     background-attachment: fixed;   /* stretches the gradient to fill the whole screen */
+    overflow: hidden;               /* the page never scrolls */
+    height: 100vh;                  /* the page is exactly as tall as the screen */
+    display: flex;                  /* lets the Notion window be centered below */
+    justify-content: center;        /* centers it left to right */
+    align-items: center;            /* centers it top to bottom */
 }
 
 /* gray bar across the top of every window, showing the app name */
 .title-bar {
     padding: 6px 10px;
     background: #dddddd;
-    border-bottom: 1px solid #999;
-    border-radius: 8px 8px 0 0;  /* rounds only the top corners */
+    border-bottom: 1px solid #999;  /* gray line between the title bar and the content */
     font-size: 13px;
     font-weight: bold;
 }
@@ -20,26 +29,83 @@ body {
 
 #task-window {
     width: 720px;
-    height: 580px;
-    margin: 80px auto;           /* 80px from the top; auto centers it left to right */
+    height: 740px;               /* tall enough for two 5-line sections, with white space at the bottom */
+    flex-shrink: 0;              /* keeps its full size even on a short screen */
     background: white;
-    border: 1px solid #999;
     border-radius: 8px;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);  /* same shadow as the sticky note */
+    overflow: hidden;            /* trims the title bar and cover to the rounded corners */
 }
 
-/* the box you type in, filling the window below the title bar */
-#typing-area {
+/* the Notion window's title bar is white (pop-ups keep their gray bar) */
+#task-window .title-bar {
+    background: white;
+}
+
+/* the colored cover across the top, fading from deep slate blue to pale aqua */
+#cover {
+    height: 140px;
+    background: linear-gradient(115deg, #44587a, #3f6f96 30%, #6f9cb3 60%, #aec6c4);  /* angle, then colors */
+}
+
+/* the writing area below the cover, with wide margins like Notion */
+#page {
+    padding: 0 100px;            /* 100px of white space on the left and right */
+}
+
+/* the big page title */
+#page-title {
+    margin: 30px 0 36px 0;       /* 30px of space above, 36px below before the sections */
+    font-size: 36px;
+    font-weight: bold;
+    color: #37352f;              /* Notion's dark gray text */
+}
+
+/* each colored section box */
+.callout {
+    margin-top: 14px;
+    padding: 20px 20px;          /* space between the box edge and what's inside */
+    border-radius: 8px;          /* rounded corners */
+}
+
+/* the two section colors */
+.blue {
+    background: #e7f1fb;         /* pale blue */
+}
+
+.green {
+    background: #e9eee9;         /* pale gray-green */
+}
+
+/* the prompt at the top of each section */
+.callout-prompt {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;            /* space between lines: 1.5 times the font size */
+    color: #37352f;
+}
+
+/* the box you type in, inside each section */
+.callout-text {
     display: block;              /* removes the small gap text boxes get underneath */
     width: 100%;
-    height: 550px;               /* window height (580) minus the title bar (about 30) */
-    padding: 20px;
-    box-sizing: border-box;      /* keeps the padding inside the width and height */
+    height: 113px;               /* 5 lines: 15px font x 1.5 line height x 5 = 112.5px */
+    margin-top: 18px;            /* more space between the prompt and where you type */
+    padding: 0 0 0 28px;         /* pushes the text in to line up with the prompt after the emoji */
+    box-sizing: border-box;      /* keeps the padding inside the 100% width */
     border: none;                /* removes the default textarea border */
     outline: none;               /* removes the blue outline when you click in it */
     resize: none;                /* hides the drag handle in the corner */
     font-family: sans-serif;
-    font-size: 16px;
-    background: none;
+    font-size: 15px;
+    line-height: 1.5;            /* space between lines: 1.5 times the font size */
+    color: #37352f;
+    background: none;            /* lets the section color show through */
+    overflow: hidden;            /* hides the scroll bar */
+}
+
+.callout-text::placeholder {
+    color: #a5a39e;              /* soft gray hint text */
 }
 
 /* ---------- the sticky note to-do list ---------- */
@@ -85,9 +151,20 @@ body {
     width: 380px;
     height: 250px;
     background: white;
-    border: 1px solid #999;
     border-radius: 8px;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);  /* same shadow as the Notion window and sticky note */
+    overflow: hidden;           /* trims anything inside to the rounded corners */
     pointer-events: auto;       /* but the pop-ups themselves can be clicked */
+}
+
+/* title bar colors: internal = I distracted myself, external = something else pulled me away */
+/* read right to left: the .title-bar INSIDE a pop-up that also has the internal (or external) class */
+.popup.internal .title-bar {
+    background: #dcd6f7;        /* soft lavender */
+}
+
+.popup.external .title-bar {
+    background: #ffd4cc;        /* soft coral */
 }
 
 /* the × in the top right corner */
@@ -99,4 +176,18 @@ body {
     background: none;
     font-size: 18px;
     cursor: pointer;            /* hand cursor on hover */
+}
+
+/* a closed pop-up, left behind as a faint ghost */
+.ghost {
+    opacity: 0.08;              /* 10% visible, so you can see through it */
+    pointer-events: none;       /* clicks pass through it, so you can still type underneath */
+}
+
+/* the app's picture, filling the pop-up below the title bar */
+.popup-image {
+    display: block;             /* removes the small gap images get underneath */
+    width: 100%;
+    height: 100%;               /* taller than the space left; the pop-up trims the extra, so there's no gap */
+    object-fit: cover;          /* fills the space without stretching; crops if needed */
 }
