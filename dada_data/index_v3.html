@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <!-- needed so symbols like × display correctly -->
+        <meta charset="UTF-8">
+
+        <title>Dada Data</title>
+
+        <meta name="description" content="Ivy's Dada Data page.">
+        <meta name="keywords" content="HTML, CSS">
+        <meta name="author" content="Ivy Chang">
+
+        <link rel="stylesheet" href="includes/style_v3.css">
+
+    </head>
+
+<body>
+
+    <!-- the to-do list, on a yellow sticky note -->
+    <div id="sticky-note">
+        <ul id="todo-list">
+            <!-- the main task; new tasks push in above it -->
+            <li class="main-task">Reflect on your week</li>
+        </ul>
+    </div>
+
+    <!-- the initial task: a Notion-style journal page the user is trying to focus on -->
+    <div id="task-window">
+        <div class="title-bar">Notion</div>
+
+        <!-- the colored cover image across the top of the page -->
+        <div id="cover"></div>
+
+        <div id="page">
+            <!-- the page title -->
+            <h1 id="page-title">weekly reflection</h1>
+
+            <!-- each section is a colored "callout" box: a prompt, then a fill-in-the-blank sentence -->
+            <!-- each <input> is one blank; placeholder is the gray hint shown before typing -->
+            <div class="callout blue">
+                <p class="callout-prompt">💭 one key moment you want to remember</p>
+                <p class="fill-in">
+                    This week, I <input class="blank" placeholder="did something">
+                    with <input class="blank" placeholder="someone">
+                    at <input class="blank" placeholder="somewhere">,
+                    and it made me feel <input class="blank" placeholder="a feeling">.
+                </p>
+            </div>
+
+            <div class="callout green">
+                <p class="callout-prompt">💭 what went well? what was hard?</p>
+                <p class="fill-in">
+                    Something that went well was <input class="blank" placeholder="something">.
+                    Something that was hard was <input class="blank" placeholder="something">,
+                    because <input class="blank" placeholder="a reason">.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- an empty container; JavaScript adds every pop-up window inside it -->
+    <div id="window-layer"></div>
+
+    <!-- the opening screen: blurs everything until the user clicks anywhere -->
+    <div id="focus-screen">
+        <p>focus on your current task!</p>
+    </div>
+
+    <script src="includes/script_v3.js"></script>
+</body>
+</html>
